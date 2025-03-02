@@ -7,13 +7,16 @@ import Header from './components/Header';
 import MainContent from './components/MainContent';
 import Footer from './components/Footer';
 import UserProfile from './components/UserProfile';
-import Counter from './components/Counter'; // Import the Counter component
+import Counter from './components/Counter';
+import { UserContext } from './components/UserContext';
 
 function App() {
   const [count, setCount] = useState(0);
+  const userData = { name: "Alice", age: "25", bio: "Loves hiking and photography" };
 
   return (
-    <>
+    <UserContext.Provider value={userData}>
+      {/* Main content */}
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -24,7 +27,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={() => setCount(count + 1)}>
           count is {count}
         </button>
         <p>Edit <code>src/App.jsx</code> and save to test HMR</p>
@@ -33,6 +36,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
 
+      {/* Render components */}
       <div className="App">
         <WelcomeMessage />
       </div>
@@ -45,18 +49,14 @@ function App() {
 
       <div className="App">
         <h1>User Profile</h1>
-        <UserProfile 
-          name="Alice" 
-          age="25" 
-          bio="Loves hiking and photography" 
-        />
+        <UserProfile />
       </div>
 
       <div className="App">
         <h1>Counter Application</h1>
         <Counter />
       </div>
-    </>
+    </UserContext.Provider>
   );
 }
 
