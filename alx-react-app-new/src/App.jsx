@@ -1,15 +1,16 @@
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
 import WelcomeMessage from './components/WelcomeMessage';
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 import Header from './components/Header';
 import MainContent from './components/MainContent';
 import Footer from './components/Footer';
-import UserProfile from './components/UserProfile'; 
+import UserProfile from './components/UserProfile';
+import Counter from './components/Counter'; // Import the Counter component
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -26,33 +27,37 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <p>Edit <code>src/App.jsx</code> and save to test HMR</p>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
       <div className="App">
-            <WelcomeMessage />
+        <WelcomeMessage />
       </div>
+
       <div className="App">
-            <Header />
-            <MainContent />
-            <Footer />
+        <Header />
+        <MainContent />
+        <Footer />
       </div>
+
       <div className="App">
-            <h1>User Profile</h1>
-            {/* Use the UserProfile component with specific props */}
-            <UserProfile 
-                name="Alice" 
-                age="25" 
-                bio="Loves hiking and photography" 
-            />
+        <h1>User Profile</h1>
+        <UserProfile 
+          name="Alice" 
+          age="25" 
+          bio="Loves hiking and photography" 
+        />
+      </div>
+
+      <div className="App">
+        <h1>Counter Application</h1>
+        <Counter />
       </div>
     </>
-    
-  )
+  );
 }
 
-export default App
+export default App;
