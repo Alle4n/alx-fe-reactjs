@@ -54,7 +54,7 @@ const AddRecipeForm = ({ onSubmit }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4">
+    <div className="max-w-md mx-auto p-6 shadow-lg">
       <h2 className="text-2xl font-semibold mb-4">Add a New Recipe</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -66,7 +66,7 @@ const AddRecipeForm = ({ onSubmit }) => {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full mt-2 px-3 py-2 border border-gray-300 rounded-md"
+            className="w-full mt-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500"
             placeholder="Enter recipe title"
           />
           {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title}</p>}
@@ -80,7 +80,7 @@ const AddRecipeForm = ({ onSubmit }) => {
             id="ingredients"
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
-            className="w-full mt-2 px-3 py-2 border border-gray-300 rounded-md"
+            className="w-full mt-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500"
             placeholder="Enter ingredients, separated by commas"
           />
           {errors.ingredients && <p className="text-red-500 text-sm mt-1">{errors.ingredients}</p>}
@@ -94,7 +94,7 @@ const AddRecipeForm = ({ onSubmit }) => {
             id="steps"
             value={steps}
             onChange={(e) => setSteps(e.target.value)}
-            className="w-full mt-2 px-3 py-2 border border-gray-300 rounded-md"
+            className="w-full mt-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500"
             placeholder="Enter preparation steps"
           />
           {errors.steps && <p className="text-red-500 text-sm mt-1">{errors.steps}</p>}
@@ -102,7 +102,7 @@ const AddRecipeForm = ({ onSubmit }) => {
 
         <button
           type="submit"
-          className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          className="w-full py-2 px-4 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700"
         >
           Add Recipe
         </button>
