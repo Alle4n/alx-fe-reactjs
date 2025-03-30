@@ -31,6 +31,21 @@ const Search = ({ setUserData, setError, setLoading }) => {
         />
         <button type="submit">Search</button>
       </form>
+
+      {setLoading && <p>Loading...</p>}
+
+      {setError && <p style={{ color: 'red' }}>{setError}</p>}
+
+      {setUserData && (
+        <div>
+          <img src={setUserData.avatar_url} alt={setUserData.login} width="100" />
+          <h2>{setUserData.login}</h2>
+          <p>{setUserData.bio}</p>
+          <a href={setUserData.html_url} target="_blank" rel="noopener noreferrer">
+            View Profile
+          </a>
+        </div>
+      )}
     </div>
   );
 };
