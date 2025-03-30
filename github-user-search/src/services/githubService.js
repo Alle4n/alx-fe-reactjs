@@ -4,7 +4,7 @@ export const fetchUserData = async (username, location, minRepos, page = 1) => {
   const apiKey = import.meta.env.VITE_APP_GITHUB_API_KEY;
 
   let query = '';
-  
+
   if (username) {
     query += `user:${username}`;
   }
@@ -21,7 +21,7 @@ export const fetchUserData = async (username, location, minRepos, page = 1) => {
 
   const queryString = query ? `q=${query}` : '';
 
-  const url = `https://api.github.com/search/users?${queryString}&page=${page}&per_page=30`;
+  const url = `https://api.github.com/search/users?q=${queryString}&page=${page}&per_page=30`;
 
   try {
     const response = await axios.get(url, {
