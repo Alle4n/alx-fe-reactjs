@@ -1,44 +1,38 @@
-import React, { useState } from 'react';
-import { searchUser } from '../services/githubService';
+import { useState } from 'react';
+import { fetchUserData } from '../services/githubService';
 
-const UserSearch = () => {
+const Search = ({ setUserData, setError, setLoading }) => {
   const [username, setUsername] = useState('');
-  const [user, setUser] = useState(null);
-  const [error, setError] = useState('');
 
-  const handleSearch = async () => {
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setUserData(null);
+
     try {
-      const data = await searchUser(username);
-      setUser(data);
-      setError('');
+      const user = await fetchUserData(username);
+      setUserData(user);
     } catch (err) {
-      setError('User not found');
-      setUser(null);
+      setError('Looks like we can\'t find the user');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Enter GitHub username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <button onClick={handleSearch}>Search</button>
-
-      {error && <p>{error}</p>}
-      {user && (
-        <div>
-          <h2>{user.name}</h2>
-          <p>{user.bio}</p>
-          <a href={user.html_url} target="_blank" rel="noopener noreferrer">
-            View Profile
-          </a>
-        </div>
-      )}
+      <form onSubmit={handleSearch}>
+        <input
+          type="text"
+          placeholder="Enter GitHub username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
     </div>
   );
 };
 
-export default UserSearch;
+export default Search;
